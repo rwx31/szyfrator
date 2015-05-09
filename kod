@@ -4,7 +4,7 @@ namespace szyfrator
 {
 	class code
 	{
-		int zegar = 0; // odlicza ilość wykonania pentli 
+		int zegar = 0; // odlicza ilość wykonania pętli 
 		char[] inputch; //przechowuje wprowadzone znaki
 		char[] kod;  // przechowuje wprowadzony kod
 		int[] cyfry = new int[1000]; // przechowuje cyfrę po modyfikacji
