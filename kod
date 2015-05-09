@@ -1,0 +1,355 @@
+ using System;
+
+namespace szyfrator
+{
+	class code
+	{
+		int zegar = 0; // odlicza ilość wykonania pentli 
+		char[] inputch; //przechowuje wprowadzone znaki
+		char[] kod;  // przechowuje wprowadzony kod
+		int[] cyfry = new int[1000]; // przechowuje cyfrę po modyfikacji
+		string[] wynik = new string[1000]; //przechowuje literę po zakodowaniu
+		int[] Aint;  // char[] kod; w wersji int[]
+		string mode; // tryb działania programu
+
+
+
+		void start()   //wybór trybu działania 
+		{
+			Console.WriteLine ("1-Kodowanie 2-Dekodowanie"); 
+		    mode = Console.ReadLine ();                              
+		}
+
+		void read() // odczyt podanych liter i zamiana ich na znaki
+		{
+			Console.WriteLine ("Podaj tekst do zakodowania (max 1000 znaków, klawiatura EN)");
+			string input = Console.ReadLine (); //wprowadzanie tekstu
+			inputch = input.ToCharArray ();     
+
+			Console.WriteLine ("Podaj klucz");
+			string klucz = Console.ReadLine ();//wczytuje kod
+			kod = klucz.ToCharArray ();                                                   //zamiana string na tablice znaków
+			Aint = Array.ConvertAll(kod, c => (int)Char.GetNumericValue(c));        // zamiana char na tablice int
+		}
+
+		void p1()   // zamiana tekstu na cyfry
+		{
+			string ram = char.ToString (inputch[zegar]); //zamiana inputch(char) na ram(string)
+			switch (ram) 
+			{
+			case " ":
+				cyfry [zegar] = 0;
+				break;
+			case "a":
+				cyfry [zegar] = 1;
+				break;
+			case "b":
+				cyfry [zegar] = 2;
+				break;
+			case "c":
+				cyfry [zegar] = 3;
+				break;
+			case "d":
+				cyfry [zegar] = 4;
+				break;
+			case "e":
+				cyfry [zegar] = 5;
+				break;
+			case "f":
+				cyfry [zegar] = 6;
+				break;
+			case "g":
+				cyfry [zegar] = 7;
+				break;
+			case "h":
+				cyfry [zegar] = 8;
+				break;
+			case "i":
+				cyfry [zegar] = 9;
+				break;
+			case "j":
+				cyfry [zegar] = 10;
+				break;
+			case "k":
+				cyfry [zegar] = 11;
+				break;
+			case "l":
+				cyfry [zegar] = 12;
+				break;
+			case "m":
+				cyfry [zegar] = 13;
+				break;
+			case "n":
+				cyfry [zegar] = 14;
+				break;
+			case "o":
+				cyfry [zegar] = 15;
+				break;
+			case "p":
+				cyfry [zegar] = 16;
+				break;
+			case "q":
+				cyfry [zegar] = 17;
+				break;
+			case "r":
+				cyfry [zegar] = 18;
+				break;
+			case "s":
+				cyfry [zegar] = 19;
+				break;
+			case "t":
+				cyfry [zegar] = 20;
+				break;
+			case "u":
+				cyfry [zegar] = 21;
+				break;
+			case "w":
+				cyfry [zegar] = 22;
+				break;
+			case "v":
+				cyfry [zegar] = 23;
+				break;
+			case "x":
+				cyfry [zegar] = 24;
+				break;
+			case "y":
+				cyfry [zegar] = 25;
+				break;
+			case "z":
+				cyfry [zegar] = 26;
+				break;
+			}
+		}
+
+		void p2() //zamiana cyfr po modyfikacji na litery
+		{
+			switch (cyfry[zegar]) 
+			{
+			case 0:
+				wynik [zegar] = " ";
+				break;
+			case 1:
+			case 27:
+				wynik [zegar] = "a";
+				break;
+			case 2:
+			case 28:
+				wynik [zegar] = "b";
+				break;
+			case 3:
+			case 29:
+				wynik [zegar] = "c";
+				break;
+			case 4:
+			case 30:
+				wynik [zegar] = "d";
+				break;
+			case 5:
+			case 31:
+				wynik [zegar] = "e";
+				break;
+			case 6:
+			case 32:
+				wynik [zegar] = "f";
+				break;
+			case 7:
+			case 33:
+				wynik [zegar] = "g";
+				break;
+			case 8:
+			case 34:
+				wynik [zegar] = "h";
+				break;
+			case 9:
+			case 35:
+				wynik [zegar] = "i";
+				break;
+			case 10:
+				wynik [zegar] = "j";
+				break;
+			case 11:
+				wynik [zegar] = "k";
+				break;
+			case 12:
+				wynik [zegar] = "l";
+				break;
+			case 13:
+				wynik [zegar] = "m";
+				break;
+			case 14:
+				wynik [zegar] = "n";
+				break;
+			case 15:
+				wynik [zegar] = "o";
+				break;
+			case 16:
+				wynik [zegar] = "p";
+				break;
+			case 17:
+				wynik [zegar] = "q";
+				break;
+			case 18:
+				wynik [zegar] = "r";
+				break;
+			case 19:
+				wynik [zegar] = "s";
+				break;
+			case 20:
+				wynik [zegar] = "t";
+				break;
+			case 21:
+				wynik [zegar] = "u";
+				break;
+			case 22:
+				wynik [zegar] = "w";
+				break;
+			case 23:
+				wynik [zegar] = "v";
+				break;
+			case 24:
+				wynik [zegar] = "x";
+				break;
+			case 25:
+				wynik [zegar] = "y";
+				break;
+			case 26:
+				wynik [zegar] = "z";
+				break;
+			}
+		}
+
+		void kodowanie() // modyfikacja cyfr odpowiadająch wprowadzonym literą o podany kod
+		{
+
+			for (int a = 0; a < inputch.Length; a += kod.Length)                          // I pętla - odlicza powtórzenia całego kodu
+			{                                
+				for (int i = 0; i < kod.Length; i++)                                      // II pętla  - odlicza powtórzenia cyfr kodu
+				{                                                                         
+					if (inputch.Length == zegar) {i = kod.Length;}                       // if przerywający dalsze wykonywaniu pętli, gdy 
+					else{	
+						p1 ();                                             // zamiana liter na cyfry
+						switch (Aint [i]) {                               //modyfikacja wartości cyfr w zależności od wybranego trybu
+						case 0:
+							break;
+						case 1:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 1;
+								break;
+							case "2":
+								cyfry [zegar] -= 1;
+								break;
+							}
+							break;
+						case 2:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 2;
+								break;
+							case "2":
+								cyfry [zegar] -= 2;
+								break;
+							}
+							break;
+						case 3:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 3;
+								break;
+							case "2":
+								cyfry [zegar] -= 3;
+								break;
+							}
+							break;
+						case 4:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 4;
+								break;
+							case "2":
+								cyfry [zegar] -= 4;
+								break;
+							}
+							break;
+						case 5:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 5;
+								break;
+							case "2":
+								cyfry [zegar] -= 5;
+								break;
+							}
+							break;
+						case 6:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 6;
+								break;
+							case "2":
+								cyfry [zegar] -= 6;
+								break;
+							}
+							break;
+						case 7:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 7;
+								break;
+							case "2":
+								cyfry [zegar] -= 7;
+								break;
+							}
+							break;
+						case 8:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 8;
+								break;
+							case "2":
+								cyfry [zegar] -= 8;
+								break;
+							}
+							break;
+						case 9:
+							switch (mode) 
+							{
+							case "1":
+								cyfry [zegar] += 9;
+								break;
+							case "2":
+								cyfry [zegar] -= 9;
+								break;
+							}
+							break;
+						}
+						p2 ();                                //zamiana cyfr po modyfikacji na litery
+						zegar++;                           
+					}
+				}
+			}
+		}
+			
+
+		public static void Main (string[] args)
+		{
+			code code1 = new code ();
+			code1.start ();
+			Console.Clear ();
+			code1.read ();
+			code1.kodowanie ();
+			Console.Clear ();
+			for (int i = 0; i < code1.zegar; i++) {
+				Console.Write (code1.wynik [i]);
+			}
+		}
+	}
+}
