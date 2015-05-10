@@ -38,7 +38,7 @@ namespace szyfrator
 
 		void p1()   // zamiana tekstu na cyfry
 		{
-			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z"};
+			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z","a","b","c","d","e","f","g","h","i"};
 			for (int i = 0; i < length; i++) {
 				for (int j = 0; j < alfabet.Length; j++) {
 					if (ram [i] == alfabet [j]) {
