@@ -1,0 +1,96 @@
+ using System;
+
+namespace szyfrator
+{
+	class CODE
+	{
+		int zegar = 0; // odlicza ilość wykonania pętli 
+		int[] cyfry; // przechowuje cyfrę po modyfikacji
+		int[] Aint;  // char[] kod; w wersji int[]
+		string[] ram;
+		string mode; // tryb działania programu
+		int length,lengthk;
+
+		void start()   //wybór trybu działania 
+		{
+			Console.WriteLine ("1-Kodowanie 2-Dekodowanie"); 
+		    mode = Console.ReadLine ();                              
+		}
+
+		void read() // odczyt podanych liter i zamiana ich na znaki
+		{
+			Console.WriteLine ("Podaj tekst do zakodowania (max 1000 znaków, klawiatura EN)"); ///TEKST
+			string input = Console.ReadLine ();   
+			length = input.Length;
+			ram = new string[input.Length];
+			cyfry = new int[input.Length];
+			for (int i = 0; i < input.Length; i++) {
+				ram[i] = input[i].ToString();
+			}
+			Console.WriteLine ("Podaj klucz (max 10 znaków)");      /// KLUCZ
+			string klucz = Console.ReadLine ();
+			lengthk = klucz.Length;
+			Aint = new int[klucz.Length];
+			for (int i = 0; i < klucz.Length; i++) {
+				Aint[i] = int.Parse(klucz[i].ToString()); 
+			}
+		}
+
+		void p1()   // zamiana tekstu na cyfry
+		{
+			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z"};
+			for (int i = 0; i < length; i++) {
+				for (int j = 0; j < alfabet.Length; j++) {
+					if (ram [i] == alfabet [j]) {
+						cyfry [i] = j;
+					}
+				}
+			}
+		}
+
+		void p2() //zamiana cyfr po modyfikacji na litery
+		{
+			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z","a","b","c","d","e","f","g","h","i"};
+			for (int i = 0; i < length; i++) {
+				for (int j = 0; j < alfabet.Length; j++) {
+					if (cyfry[i] == j) {
+						ram[i] = alfabet[j];
+					}
+				}
+			}
+		}
+
+		void kodowanie() // modyfikacja cyfr odpowiadająch wprowadzonym literą o podany kod
+		{
+
+			for (int a = 0; a < length; a += lengthk)                          // I pętla - odlicza powtórzenia całego kodu
+			{     
+				for (int i = 0; i < lengthk; i++)                                      // II pętla  - odlicza powtórzenia cyfr kodu
+				{                                                                         
+					if (length == zegar) {i = lengthk;}                       // if przerywający dalsze wykonywaniu pętli, gdy 
+					else{	                                            
+						if (mode == "1") {cyfry [zegar] += Aint [i];}
+						if (mode == "2") {cyfry [zegar] -= Aint [i];}
+						zegar++;  
+					}
+				}
+			}
+		}
+
+		public static void Main (string[] args)
+		{
+			CODE code1 = new CODE ();
+			code1.start ();
+			Console.Clear ();
+			code1.read ();
+			code1.p1 (); 
+			code1.kodowanie ();
+			code1.p2 (); 
+			Console.Clear ();
+			Console.WriteLine ("Wynik:");
+			for (int i = 0; i < code1.zegar; i++) {
+				Console.Write (code1.ram [i]);
+			}
+		}
+	}
+}
