@@ -1,4 +1,4 @@
- using System;
+using System;
 
 namespace szyfrator
 {
@@ -14,7 +14,7 @@ namespace szyfrator
 		void start()   //wybór trybu działania 
 		{
 			Console.WriteLine ("1-Kodowanie 2-Dekodowanie"); 
-		    mode = Console.ReadLine ();                              
+			mode = Console.ReadLine ();                              
 		}
 
 		void read() // odczyt podanych liter i zamiana ich na znaki
@@ -38,11 +38,12 @@ namespace szyfrator
 
 		void p1()   // zamiana tekstu na cyfry
 		{
-			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z","a","b","c","d","e","f","g","h","i"};
+			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z","A","B","C","D","E","F","G","H","I"};
 			for (int i = 0; i < length; i++) {
 				for (int j = 0; j < alfabet.Length; j++) {
 					if (ram [i] == alfabet [j]) {
 						cyfry [i] = j;
+						j = alfabet.Length;
 					}
 				}
 			}
@@ -50,11 +51,12 @@ namespace szyfrator
 
 		void p2() //zamiana cyfr po modyfikacji na litery
 		{
-			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z","a","b","c","d","e","f","g","h","i"};
+			string[] alfabet = {" ","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z","A","B","C","D","E","F","G","H","I"};
 			for (int i = 0; i < length; i++) {
 				for (int j = 0; j < alfabet.Length; j++) {
 					if (cyfry[i] == j) {
 						ram[i] = alfabet[j];
+						j = alfabet.Length;
 					}
 				}
 			}
@@ -86,11 +88,12 @@ namespace szyfrator
 			code1.p1 (); 
 			code1.kodowanie ();
 			code1.p2 (); 
-			Console.Clear ();
+			//Console.Clear ();
 			Console.WriteLine ("Wynik:");
 			for (int i = 0; i < code1.zegar; i++) {
 				Console.Write (code1.ram [i]);
 			}
+			Console.ReadKey ();
 		}
 	}
 }
