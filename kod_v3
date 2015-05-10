@@ -19,7 +19,7 @@ namespace szyfrator
 
 		void read() // odczyt podanych liter i zamiana ich na znaki
 		{
-			Console.WriteLine ("Podaj tekst do zakodowania (max 1000 znaków, klawiatura EN)"); ///TEKST
+			Console.WriteLine ("Podaj tekst do zakodowania/odszyfrowania  (klawiatura EN)"); ///TEKST
 			string input = Console.ReadLine ();   
 			length = input.Length;
 			ram = new string[input.Length];
@@ -27,7 +27,7 @@ namespace szyfrator
 			for (int i = 0; i < input.Length; i++) {
 				ram[i] = input[i].ToString();
 			}
-			Console.WriteLine ("Podaj klucz (max 10 znaków)");      /// KLUCZ
+			Console.WriteLine ("Podaj klucz (tylko cyry)");      /// KLUCZ
 			string klucz = Console.ReadLine ();
 			lengthk = klucz.Length;
 			Aint = new int[klucz.Length];
